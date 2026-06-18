@@ -186,4 +186,4 @@ kanban/
 | 4 | 인증 화면 HTML/CSS 구현 | ✅ 완료 |
 | 5 | script.js Supabase 연동 재작성 | ✅ 완료 |
 | 6 | GitHub Actions 배포 워크플로우 | ✅ 완료 |
-| 7 | QA · 문서 최종화 | ⬜ 진행 예정 |
+| 7 | QA · 문서 최종화 | 🔄 진행 중 |
