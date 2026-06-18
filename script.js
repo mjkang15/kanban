@@ -207,14 +207,12 @@ async function deleteCardById(id) {
 async function syncCardOrders(columnName, orderedIds) {
     if (!orderedIds.length) return;
     const now = new Date().toISOString();
-    const updates = orderedIds.map((id, i) => ({
-        id,
-        column_name: columnName,
-        sort_order:  i,
-        updated_at:  now,
-    }));
-    const { error } = await sb.from('cards').upsert(updates);
-    if (error) showToast('순서 저장에 실패했습니다.', 'error');
+    const results = await Promise.all(
+        orderedIds.map((id, i) =>
+            sb.from('cards').update({ column_name: columnName, sort_order: i, updated_at: now }).eq('id', id)
+        )
+    );
+    if (results.some(({ error }) => error)) showToast('순서 저장에 실패했습니다.', 'error');
 }
 
 function getColumnCards(column) {
